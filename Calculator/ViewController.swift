@@ -4,14 +4,16 @@
 //
 //  Created by Yatin on 17/01/17.
 //  Copyright © 2017 MAPD-124. All rights reserved.
-//
+//  Simple calculator applicaion, can perform +,-,/,X and square root of a 
+//  number.
 
 import UIKit
 
 class ViewController: UIViewController {
 
+    //Result labe reference
     @IBOutlet weak var resultLabel: UILabel!
-    
+    //Instance variables used in performing calculation
     var firstNumberText = "0.0"
     var secondNumberText = "0.0"
     var op = "+"
@@ -30,6 +32,7 @@ class ViewController: UIViewController {
     }
     
     
+    //Handling button press on calculator screen
     @IBAction func handleButtonPress(_ sender: UIButton) {
         if canClear {
             resultLabel.text = ""
@@ -80,12 +83,14 @@ class ViewController: UIViewController {
         }
     }
     
+    //performing Squareroot calculation
     func calculateSquareRoot() -> Double{
         let firstNumber = Double(firstNumberText)!
         firstNumberText = ""
         return sqrt(firstNumber)
     }
     
+    //performing +,-,/,X on two numbers
     func calculate() -> Double {
         let firstNumber = Double(firstNumberText)!
         let secondNumber = Double(secondNumberText)!
