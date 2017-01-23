@@ -14,8 +14,8 @@ class ViewController: UIViewController {
     //Result labe reference
     @IBOutlet weak var resultLabel: UILabel!
     //Instance variables used in performing calculation
-    var firstNumberText = "0.0"
-    var secondNumberText = "0.0"
+    var firstNumberText = ""
+    var secondNumberText = ""
     var op = "+"
     var isFirstNumber = true
     var hasOp = false
@@ -52,6 +52,9 @@ class ViewController: UIViewController {
                 resultLabel.text = "\(currentText) \(op) "
                 break
             case "sqr":
+                if hasOp {
+                    return
+                }
                 isFirstNumber = true
                 hasOp = false
                 canClear = true
@@ -85,15 +88,17 @@ class ViewController: UIViewController {
     
     //performing Squareroot calculation
     func calculateSquareRoot() -> Double{
-        let firstNumber = Double(firstNumberText)!
+        let firstNumber = firstNumberText != "" ?Double(firstNumberText)!:0.0
         firstNumberText = ""
         return sqrt(firstNumber)
     }
     
     //performing +,-,/,X on two numbers
     func calculate() -> Double {
-        let firstNumber = Double(firstNumberText)!
-        let secondNumber = Double(secondNumberText)!
+        let firstNumber = firstNumberText != "" ?Double(firstNumberText)!:0.0
+        let secondNumber = secondNumberText != "" ?Double(secondNumberText)!:0.0
+//        let secondNumber = Double(secondNumberText)!
+//        let secondNumber = Double(secondNumberText)!
         firstNumberText = ""
         secondNumberText = ""
         switch op {
@@ -106,7 +111,7 @@ class ViewController: UIViewController {
         case "/":
             return firstNumber / secondNumber
         default:
-            return 0
+            return 0.0
         }
     }
 
